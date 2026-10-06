@@ -1,0 +1,13 @@
+# Runtime parameters — loaded by the registry and passed as Graph(config=...).
+# The standalone entry point (src/api/server.py) loads the same file, so a
+# value declared here is live in both deployments.
+# Separate from config/agent.yaml (the static manifest, which carries identity
+# and compile-time requirements only).
+#
+# Every key below has a live reader.
+#
+# max_retry: read by the framework backbone. When the main step reports a
+# RETRY status, the request is re-run through pre_process up to this many
+# times before the run finalises. Validated at compile time — a value that is
+# not a non-negative integer below the framework ceiling refuses to start.
+max_retry: 3
